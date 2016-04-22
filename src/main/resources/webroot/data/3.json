@@ -1,0 +1,42 @@
+{
+  "manifest_version":0.1,
+  "name":"predixExtension",
+  "version":1.0,
+  "version_name":"alpha release",
+  "author":"Cisco",
+  "short_name":"predix",
+  "description":" The Predix Extension helps you manage the registration and de-registration of Cisco devices to the predix cloud. The Predix machine will only work on registered Predix devices. You must configure the Predix Cloud details here before registering new devices from Fog Director",
+  "homepage_url":"http://predix.io",
+  "icons":{
+    "16":"icon16.png",
+    "48":"icon48.png",
+    "128":"icon128.png"
+  },
+  "type":"inprocess",
+  "main_class":"com.cisco.eng.ccm.extensions.predix.PredixExtension",
+  "configuration":{
+    "page":"views/predixConfiguration.html"
+  },
+  "ui_extension_points":[
+    {
+      "type":"context_link",
+      "location":"apps/:appId",
+      "filter":"appId=predix",
+      "label":"Manage Predix devices",
+      "description":"",
+      "resources":{
+        "ui_extension_html":"views/predixAppManageDevices.html",
+        "ui_extension_resources":[
+          "scripts/controllers/predixAppManageDevicesController.js"
+        ]
+      }
+    }
+  ],
+  "custom_properties":{
+    "db.relative.path":"/predix.dat",
+    "getDevices.api.path":"/v1/device-mgmt/devices",
+    "addDevices.api.path":"/v2/device-mgmt/devices/batch",
+    "deleteDevices.api.path":"/v1/device-mgmt/devices/batchDelete"
+  }
+}
+

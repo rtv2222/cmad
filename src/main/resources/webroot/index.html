@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CMAD sample</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+</head>
+<body>
+This is the body
+<div id="jsonContent">test</div>
+<script type="text/javascript">
+
+$( document ).ready(function() {
+	$( "#jsonContent" ).append( "hello" );
+	$.getJSON( "data/1.json", function( data1 ) {
+		console.log(data1.toString());
+		  $( "#jsonContent" ).append( JSON.stringify(data1) );
+		  $.getJSON( "data/2.json", function( data2 ) {
+			  $( "#jsonContent" ).append( data2 );
+			  $.getJSON( "data/3.json", function( data3 ) {
+				  $( "#jsonContent" ).append( data3 );
+				  console.log("all 3 json files were loaded")
+				});
+			});
+		});
+	var name="";
+	$.get("data/1.json")
+	.then(function(data){
+		name = name + data.name+" ";
+		return $.get("data/2.json");
+	}).then(function(data2){
+		name = name + data2.name+" ";
+		return $.get("data/3.json");
+	}).then(function(data3){
+		name = name + data3.name+" ";
+		console.log(name);
+	});
+	
+	var onePromise = $.get("data/1.json");
+	var twoPromise = $.get("data/2.json");
+	var threePromise = $.get("data/3.json");
+	
+	$.when(onePromise, twoPromise, threePromise).done(function(data1, data2, data3) {
+		//Returns an array of data, success/failure status, XHR object
+		console.log(data1[0].name+" "+data2[0].name+" "+data3[0].name);	
+	}).fail(function(data1,data2,data3) {
+		console.log(data1+" "+data2+" "+data3);
+	})
+});
+
+</script>
+</body>
+</html>

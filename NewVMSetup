@@ -1,0 +1,11 @@
+Steps to setup my ubuntu vm
+
+1. Created a new ubuntu vm from the downloaded iso image
+2. Installed docker - curl -fsSL https://get.docker.com/ | sh
+3. Installed maven - sudo apt-get install maven
+4. Installed java - wget http://cdn.azul.com/zulu/bin/zulu8.15.0.1-jdk8.0.92-linux_amd64.deb && sudo dpkg -i zulu8.15.0.1-jdk8.0.92-linux_amd64.deb
+5. Installed Jenkins - 
+wget -q -O - https://jenkins-ci.org/debian/jenkins-ci.org.key | sudo apt-key add -
+sudo sh -c 'echo deb http://pkg.jenkins-ci.org/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+sudo apt-get update
+sudo apt-get install jenkins

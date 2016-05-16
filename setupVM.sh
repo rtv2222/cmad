@@ -20,6 +20,14 @@ sudo apt-get update
 sudo apt-get install go-server
 sudo apt-get install go-agent
 
+#Stop the go server
+/etc/init.d/go-server stop
+#Install the docker plugin
+cd /var/lib/go-server/plugins/external
+sudo wget https://github.com/manojlds/gocd-docker/releases/download/0.1.23/docker-task-assembly-0.1.23.jar
+#Start go-server
+/etc/init.d/go-server start
+
 #Start the go agent
 /etc/init.d/go-agent start
 

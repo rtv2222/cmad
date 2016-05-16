@@ -20,3 +20,5 @@ edit /etc/default/go-agent was not needed since it had 127.0.0.1 on it already f
 
 6. Installed mongo docker instance so that GoCD can run tests
 sudo docker run --name mymongo -p 27017:27017 -d mongo:latest
+
+7.Had to add go to the sudo group for docker to work
